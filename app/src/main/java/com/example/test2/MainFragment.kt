@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import okhttp3.ResponseBody
+import retrofit2.Retrofit
 
 
 class MainFragment : Fragment() {
@@ -28,5 +30,6 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         // TODO: Use the ViewModel
     }
+
 
 }

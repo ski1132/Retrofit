@@ -2,7 +2,7 @@ package com.example.test2
 
 import com.google.gson.annotations.Expose
 
-class User {
+class Model {
     @Expose
     var firstName: String? = null
         internal set

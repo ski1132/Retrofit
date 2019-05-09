@@ -9,7 +9,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val num = 2
-
+        supportFragmentManager.beginTransaction().add(R.id.mainFrag,MainFragment()).commit()
     }
 }

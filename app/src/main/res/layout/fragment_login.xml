@@ -1,0 +1,46 @@
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".LoginFragment"
+             android:orientation="vertical"
+              android:padding="50dp"
+>
+    <TextView
+            android:text="@string/username"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    />
+    <EditText
+            android:id="@+id/user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:inputType="text"
+    />
+    <TextView
+            android:text="@string/password"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+    />
+    <EditText
+            android:id="@+id/pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:importantForAutofill="no" tools:targetApi="o"
+            android:inputType="text"/>
+    <Button
+            android:id="@+id/btSend"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"/>
+
+</LinearLayout>

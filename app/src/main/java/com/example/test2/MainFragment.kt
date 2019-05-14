@@ -7,18 +7,27 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.main_fragment.*
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.widget.Toast as Toast1
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 
 class MainFragment : Fragment() {
-
+    companion object {
+        fun sentToken(token: String): MainFragment {
+            val bundle = Bundle()
+            bundle.putString("KEY_TOKEN", token)
+            val fragment = MainFragment()
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,45 +47,28 @@ class MainFragment : Fragment() {
         val retrofit = Retrofit.Builder().baseUrl("http://rakgun.com")
             .client(client)
             .addConverterFactory(GsonConverterFactory.create()).build()
-        val service = retrofit.create(Service::class.java)
+        val service = retrofit.create(DataService::class.java)
 
-        val call = service.getData()
+        val call = service.getData(arguments!!.getString("KEY_TOKEN"))
 
         call.enqueue( object : Callback<ResponseModel>{
             override fun onFailure(call: Call<ResponseModel>?, t: Throwable?) {
-                Log.e("---- On faulure --- = "," can't")
             }
 
             override fun onResponse(call: Call<ResponseModel>?, response: Response<ResponseModel>) {
-                val dataModel : ResponseModel = response.body()
+
 
                 if (response.code() == 200)
                 {
-                    Log.e("---- dataModel --- = ",dataModel.person[0].firstName.toString())
-                    Log.e("---- call --- = ", call.toString())
-
+                    val logModel : ResponseModel = response.body()
                     activity?.also {
-                        val arrayData: ArrayList<PersonModel> = arrayListOf()
-                        for(i in 0..2) {
-                            arrayData.add(
-                                PersonModel(
-                                    firstName = dataModel.person[i].firstName.toString(),
-                                    lastName = dataModel.person[i].lastName.toString(),
-                                    age = dataModel.person[i].age.toString(),
-                                    picture = dataModel.person[i].picture.toString()
-                                )
-                            )
-                        }
                         recycleView?.layoutManager = LinearLayoutManager(it)
-                        recycleView.adapter = MainAdapter(arrayData, it)
+                        recycleView.adapter = MainAdapter(logModel.person, it)
                     }
                 }
                 else {
                     response.errorBody()
                 }
-
-
-
             }
 
         })

@@ -13,6 +13,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().replace(R.id.mainFrag,MainFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.mainFrag,LoginFragment()).commit()
     }
 }

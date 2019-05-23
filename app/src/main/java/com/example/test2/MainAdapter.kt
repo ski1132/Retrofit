@@ -25,7 +25,6 @@ class MainAdapter(val items: ArrayList<PersonModel>, private val context: Contex
     }
 
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-
         fun bind(position: Int) {
             val nameText = view.nameText
             val lastText = view.lastText

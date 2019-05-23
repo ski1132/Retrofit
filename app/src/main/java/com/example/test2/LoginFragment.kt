@@ -26,7 +26,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated (view: View, savedInstanceState: Bundle?){
         btSend.setOnClickListener()
         {
-            Log.e("---- user --- = ",user.text.toString())
             val interceptor = HttpLoggingInterceptor()
             interceptor.level = HttpLoggingInterceptor.Level.BODY
             val client = OkHttpClient.Builder().addInterceptor(interceptor).build()
@@ -47,11 +46,9 @@ class LoginFragment : Fragment() {
                     if (response.code() == 200)
                     {
 
-                        val logModel : LoginModel = response.body()
+                        val logModel : LoginModel = response.body()!!
 
                         logModel.token?.let{
-                            Log.e("---- dataModel --- = ",logModel.status)
-                            Log.e("---- call --- = ", call.toString())
 
                             Toast.makeText(context, "Correct Username and Password", Toast.LENGTH_SHORT).show()
                             activity?.also {activity->

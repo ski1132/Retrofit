@@ -2,13 +2,9 @@ package com.example.test2
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.gson.Gson
-import kotlinx.android.synthetic.main.main_fragment.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -17,6 +13,8 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import android.widget.Toast as Toast1
+import kotlinx.android.synthetic.main.main_fragment.*
+
 
 class MainFragment : Fragment() {
     companion object {
@@ -60,10 +58,11 @@ class MainFragment : Fragment() {
 
                 if (response.code() == 200)
                 {
-                    val logModel : ResponseModel = response.body()
+                    val logModel : ResponseModel = response.body()!!
                     activity?.also {
-                        recycleView?.layoutManager = LinearLayoutManager(it)
-                        recycleView.adapter = MainAdapter(logModel.person, it)
+                        viewPagerUI.adapter = CustomPagerAdapter(logModel.person,it)
+                        indicator.setViewPager(viewPagerUI)
+                        //recycleView.adapter = MainAdapter(logModel.person, it)
                     }
                 }
                 else {

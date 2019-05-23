@@ -3,13 +3,20 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         tools:context=".MainFragment">
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycleView"
+    <android.support.v4.view.ViewPager
+            android:id="@+id/viewPagerUI"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"/>
+    <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="bottom|center"
+            app:fillColor="@color/colorPrimary"
+            app:strokeColor="#000000"
+            android:layout_margin="10dp" tools:ignore="ObsoleteLayoutParam"/>
 </FrameLayout>
